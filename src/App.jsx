@@ -1,42 +1,16 @@
+// src/App.jsx
 import React from "react";
-import { Breadcrumb, Layout, theme } from "antd";
-const { Content, Sider } = Layout;
-import Asider from "@/layout/sider/index.jsx";
-import Main from "@/layout/main/index.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import routes from "@/router/index";
+
+const router = createBrowserRouter(routes);
+
 const App = () => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Layout>
-        <Sider
-          width={200}
-          style={{
-            background: colorBgContainer,
-          }}
-        >
-          <Asider />
-        </Sider>
-        <Layout
-          style={{
-            padding: "0 24px 24px",
-          }}
-        >
-          <Content
-            style={{
-              padding: 24,
-              margin: 0,
-              minHeight: 280,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          >
-            <Main />
-          </Content>
-        </Layout>
-      </Layout>
-    </Layout>
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <RouterProvider router={router} />
+    </React.Suspense>
   );
 };
+
 export default App;
