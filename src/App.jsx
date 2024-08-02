@@ -1,8 +1,8 @@
 // src/App.jsx
 import React from "react";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import routes from "@/router/index";
-
 const router = createBrowserRouter(routes);
 
 const App = () => {

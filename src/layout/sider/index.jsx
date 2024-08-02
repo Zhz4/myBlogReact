@@ -1,29 +1,29 @@
 import React from "react";
 import { Menu } from "antd";
 
-import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-  (icon, index) => {
-    const key = String(index + 1);
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
-      children: new Array(4).fill(null).map((_, j) => {
-        const subKey = index * 4 + j + 1;
-        return {
-          key: subKey,
-          label: `option${subKey}`,
-        };
-      }),
-    };
-  }
-);
+import { LaptopOutlined, UserOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+const keys = ["/home", "/option"];
+const items2 = [UserOutlined, LaptopOutlined].map((icon, index) => {
+  const key = String(index + 1);
+  return {
+    key: keys[index % 2],
+    icon: React.createElement(icon),
+    label: `subnav ${key}`,
+    // children: new Array(4).fill(null).map((_, j) => {
+    //   const subKey = index * 4 + j + 1;
+    //   return {
+    //     key: subKey,
+    //     label: `option${subKey}`,
+    //   };
+    // }),
+  };
+});
 function asider() {
+  const navigate = useNavigate();
+  const handleSelect = (e) => {
+    navigate(e.key);
+  };
   return (
     <Menu
       mode="inline"
@@ -34,9 +34,7 @@ function asider() {
         borderRight: 0,
       }}
       items={items2}
-      onSelect={({ key }) => {
-        console.log(key);
-      }}
+      onSelect={handleSelect}
     />
   );
 }

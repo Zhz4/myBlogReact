@@ -1,7 +1,6 @@
-
+import React from "react";
+import { Outlet } from "react-router-dom";
 function main() {
-  return (
-   <div>main</div>
-  );
+  return <Outlet />;
 }
 export default main;
